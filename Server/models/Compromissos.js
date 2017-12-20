@@ -12,4 +12,4 @@ var CompromissosSchema = new mongoose.Schema({
 });
 
 //Define o model Compromisso
-mongoose.model('Compromissos', CompromissosSchema);
+mongoose.model('compromissos', CompromissosSchema);
