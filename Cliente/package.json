@@ -1,0 +1,14 @@
+{
+  "name": "nodeapi",
+  "version": "1.0.0",
+  "description": "ret full api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Abel Lopes",
+  "license": "ISC",
+  "devDependencies": {
+    "@angular/cli": "^1.6.1"
+  }
+}
