@@ -10,13 +10,13 @@ import { CompromissosModel } from './compromissos.model'
 })
 export class CompromissosComponent implements OnInit {
 
-  compormissos: CompromissosModel[]
+  compromissos: CompromissosModel[]
   
 
   constructor() { }
 
   ngOnInit() {
-    this.compormissos  = [
+    this.compromissos  = [
       {id: "1", titulo: "Reuniao daly", descricao:"Reuniao agile todos os dias", dia: "12/01/2017", hora: "12:50" },
       {id: "2", titulo: "Reuniao agenda", descricao:"Reuniao agile todos os dias", dia: "12/01/2017", hora: "12:50" },
       {id: "3", titulo: "Reuniao cafe", descricao:"Reuniao agile todos os dias", dia: "12/01/2017", hora: "12:50" },

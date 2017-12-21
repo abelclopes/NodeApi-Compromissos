@@ -5,6 +5,28 @@
   <section class="content">
 
     <div class="col-lg-12">
+    <h2>Angenda de Compromissos</h2>
+      
+
+
+      <form [formGroup]="orderForm" novalidate>
+        <div class="col-sm-6 col-xs-12">
+          <mt-input-container errorMessage="Campo obrigatório e com 5 caracteres" label="Nome">
+            <input class="form-control" formControlName="titulo" placeholder="Titulo" autocomplete="off" >
+          </mt-input-container>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+          <mt-input-container errorMessage="Campo obrigatório e com 5 caracteres" label="Nome">
+            <input class="form-control" formControlName="titulo" placeholder="Titulo" autocomplete="off" >
+          </mt-input-container>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+          <mt-input-container errorMessage="Campo obrigatório e com 5 caracteres" label="Nome">
+            <input class="form-control" formControlName="titulo" placeholder="Titulo" autocomplete="off" >
+          </mt-input-container>
+        </div>
+        <button (click)="criarNovoCompromisso()">Salvar</button>
+      </form>
       <ul>
         <li *ngFor="let compromisso of compromissos">
            <span class="badge">{{compromisso.titulo}}</span> {{compromisso.titulo}}
