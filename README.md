@@ -5,11 +5,7 @@ agenda de comprommissos restfull com angular 4+ nodejs express
 
 ### Instalando as Dependências
 
-`cd .\ClienteApp\`
-`npm install`
-
-`cd .\Server\`
-`npm install`
+`cd .\ClienteApp\` `npm install`
 
 ### Inicializando o Servidor
 
@@ -19,8 +15,7 @@ agenda de comprommissos restfull com angular 4+ nodejs express
 
 ### Instalando o json-server
 
-`npm install -g json-server`
+`cd .\Server\` `npm install`
 
 ### Iniciando o serviço (raiz da aplicação)
-`cd .\Server\`
-`node api.js`
+`cd .\Server\``node api.js`
