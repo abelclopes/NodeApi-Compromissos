@@ -43,7 +43,7 @@ app.use('/', index);
 
 
 // LISTEN (iniciando nossa aplicação em node) ==========
-// Define a porta 8080 onde será executada nossa aplicação
-app.listen(8080);
+// Define a porta 3000 onde será executada nossa aplicação
+app.listen(3000);
 // Imprime uma mensagem no console
-console.log("Aplicação executada na porta 8080");
+console.log("Aplicação executada na porta 3000"); 
