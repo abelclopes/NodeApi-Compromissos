@@ -1,12 +1,26 @@
 # NodeApi-Compromissos
 agenda de comprommissos restfull com angular 4+ nodejs express
 
+## 1. Passos para começar
 
+### Instalando as Dependências
 
-Necessario instalar Node Js
+`cd .\ClienteApp\`
+`npm install`
 
-Instalar as Depensencias
-```
-cd .\Server\npm install
-cd .\ClienteApp\npm install
-```
+`cd .\Server\`
+`npm install`
+
+### Inicializando o Servidor
+
+`ng serve` ou `npm start`
+
+## 2. Iniciando o Backend
+
+### Instalando o json-server
+
+`npm install -g json-server`
+
+### Iniciando o serviço (raiz da aplicação)
+`cd .\Server\`
+`node api.js`
