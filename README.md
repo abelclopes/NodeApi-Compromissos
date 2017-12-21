@@ -13,7 +13,7 @@ agenda de comprommissos restfull com angular 4+ nodejs express
 
 ## 2. Iniciando o Backend
 
-### Instalando o json-server
+### Instalando o express-server
 
 `cd .\Server\` `npm install`
 
