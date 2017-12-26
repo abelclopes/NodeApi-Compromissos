@@ -5,10 +5,9 @@ var mongoose = require('mongoose');
 var CompromissosSchema = new mongoose.Schema({
     titulo: String,
     derscricao: String,
-    dia: Date,
-    hora: Date,
-    derscricao: String,
-    status: String
+    dataInicio: Date,
+    dataFim: Date,
+    status: Boolean
 });
 
 //Define o model Compromisso

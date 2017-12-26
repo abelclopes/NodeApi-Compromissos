@@ -1,34 +1,61 @@
 import {Injectable} from '@angular/core'
+import {Http, Headers, RequestOptions} from '@angular/http'
+
+import {Observable} from 'rxjs/Observable'
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/catch'
 
 import {CompromissosModel} from './compromissos.model'
 
-import {NotificationService} from '../shared/messages/notification.service'
+  import {NotificationService} from '../shared/messages/notification.service'
+
+import {MEAT_API} from '../app.api'
 
 @Injectable()
-export class CompromissosService {
-  items: CompromissosModel[] = []
-
-  constructor(private notificationService: NotificationService){}
-
-  clear(){
-    this.items = []
+export class CompromissosService 
+{
+  items: Array<CompromissosModel>
+  Url:string
+  constructor(private notificationService: NotificationService, private http: Http){
+    this.Url = `${MEAT_API}/api/compromissos/`
   }
 
-  addItem(item:CompromissosModel){
-    let foundItem = this.items.find((mItem)=> mItem.id === item.id)
-    // if(foundItem){
-    //   this.updateCompromisso(foundItem)
-    // }else{
-    //   this.items.push(new CompromissosModel(item))
-    // }
-    this.notificationService.notify(`Você adicionou o Compromisso ${item.titulo}`)
-  }
-  remover(item: CompromissosModel){    
-    this.removeCompromisso(item)    
+  // metodos http 
+
+  getAll(): Observable<CompromissosModel[]>
+  {
+      return this.http.get(this.Url)
+                          .map(response=> response.json())                    
   }
 
-  removeCompromisso(item:CompromissosModel){
-    this.items.splice(this.items.indexOf(item), 1)
-    this.notificationService.notify(`Você removeu o Compromisso ${item.titulo}`)
+  CriarNovoCompromissoPost(compromisso) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let body = JSON.stringify(compromisso);
+  console.log(body);
+  
+    return this.http.post(this.Url, body, options)
+                    .map((res) => res.json())
+                    .map(compromisso => compromisso._id)
+  }
+  
+  AlteraCompromissoPut(compromisso) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let body = JSON.stringify(compromisso);
+  
+    return this.http.put(this.Url+compromisso._id, body, options)
+                    .map((res) => res.json())
+                    .map(compromisso => compromisso._id)
+  }
+  
+  RemoverCompromissoDelete(compromisso) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    let body = JSON.stringify(compromisso._id);
+  
+    return this.http.delete(this.Url+compromisso._id, options)
+                    .map((res) => res.json())
+                    .map(compromisso => compromisso._id)
   }
 }

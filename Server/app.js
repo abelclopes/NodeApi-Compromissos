@@ -20,7 +20,14 @@ mongoose.connect('mongodb://localhost/compromissos');
 // Requisição ao arquivo que cria nosso model Contato
 require('./models/compromissos');
 
-
+// add cors
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS")
+  res.header("Allow", "GET,POST,PUT,DELETE,OPTIONS")
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 // DEFININDO A APLICAÇÃO ==============================
 // definindo local de arquivos públicos
 app.use(express.static(__dirname + '/public'));

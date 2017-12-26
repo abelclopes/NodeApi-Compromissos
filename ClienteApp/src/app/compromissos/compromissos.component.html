@@ -1,38 +1,79 @@
 <!-- INÍCIO DO CONTEÚDO -->
 <section class="content-header">
-  </section>
-
+</section>
   <section class="content">
+    <div class="col-sm-12 col-xs-12">
+      <!-- <h2>{{tituloApp}}</h2> -->
 
-    <div class="col-lg-12">
-    <h2>Angenda de Compromissos</h2>
-      
-
-
-      <form [formGroup]="orderForm" novalidate>
-        <div class="col-sm-6 col-xs-12">
-          <mt-input-container errorMessage="Campo obrigatório e com 5 caracteres" label="Nome">
-            <input class="form-control" formControlName="titulo" placeholder="Titulo" autocomplete="off" >
-          </mt-input-container>
-        </div>
-        <div class="col-sm-6 col-xs-12">
-          <mt-input-container errorMessage="Campo obrigatório e com 5 caracteres" label="Nome">
-            <input class="form-control" formControlName="titulo" placeholder="Titulo" autocomplete="off" >
-          </mt-input-container>
-        </div>
-        <div class="col-sm-6 col-xs-12">
-          <mt-input-container errorMessage="Campo obrigatório e com 5 caracteres" label="Nome">
-            <input class="form-control" formControlName="titulo" placeholder="Titulo" autocomplete="off" >
-          </mt-input-container>
-        </div>
-        <button (click)="criarNovoCompromisso()">Salvar</button>
-      </form>
-      <ul>
-        <li *ngFor="let compromisso of compromissos">
-           <span class="badge">{{compromisso.titulo}}</span> {{compromisso.titulo}}
-        </li>
-      </ul>
+      <div class="col-sm-12 col-xs-12">
+        <form [formGroup]="cpFormGroup" novalidate (ngSubmit)="onSubmit(cpFormGroup.value)" >
+          <div class="col-sm-6 col-xs-12">
+            <mt-input-container errorMessage="Campo obrigatório e com 5 caracteres" label="Titulo">
+              <input class="form-control" formControlName="titulo" placeholder="Titulo" autocomplete="off" >
+            </mt-input-container>
+          </div>
+          <div class="col-sm-6 col-xs-6">
+            <div class="form-group">
+                  <mt-input-container errorMessage="Campo obrigatório" label="De">                                           
+                    <datetime placeholder="De"
+                     date-format="DD-MM-YYYY hh:mm" 
+                     formControlName="dataInicio" 
+                     [timepicker]="{ icon: 'fa fa-clock-o' , placeholder: 'Hora Inicio' }" 
+                     [datepicker]="{ icon: 'fa fa-calendar', placeholder: 'Data Inicio' }"
+                     ></datetime>                 
+                  </mt-input-container>
+            </div>            
+            <div class="form-group">
+                  <mt-input-container errorMessage="Campo obrigatório" label="ate">                                           
+                    <datetime 
+                     date-format="DD-MM-YYYY hh:mm" 
+                     formControlName="dataFim"                     
+                     [timepicker]="{ icon: 'fa fa-clock-o' , placeholder: 'Hora Fim' }" 
+                     [datepicker]="{ icon: 'fa fa-calendar', placeholder: 'Data Fim' }"
+                     ></datetime>                 
+                  </mt-input-container>
+            </div>            
+          </div>
+          <div class="col-sm-12 col-xs-12">
+          <button class="btn btn-primary">Salvar</button>
+          </div>
+        </form>
     </div>
 
-  </section>
+    <div class="col-sm-12 col-xs-12" *ngIf="compromissos">
+      <h3>Lista de Compromissos</h3>
+      <table class="table">
+        <tr>
+          <th>Titulo</th>
+          <th>Inicio</th>
+          <th>Fim</th>
+          <th>Ação</th>
+        </tr>
+        <tr *ngFor="let c of compromissos">
+          <td>
+            <span>{{c.titulo}}</span>
+          </td>
+          <td>
+            {{c.dataInicio | date: 'dd/MM/yyyy hh:mm'}}
+          </td>            
+          <td>
+            {{c.dataFim | date: 'dd/MM/yyyy hh:mm'}}
+          </td>
+          <td>
+            <i (click)="Excluir(c,template)" class="glyphicon glyphicon-trash" title="Excluir"></i>
+            <i (click)="Editar(c,template)" class="glyphicon glyphicon-edit" title="Editar"></i>
+          </td>
+          <td></td>
+        </tr>
+     </table>
+   </div> 
+ </div>
+</section>
   <!-- FIM DO CONTEÚDO -->
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Do you want to confirm?</p>
+    <button type="button" class="btn btn-default" (click)="confirmExcluir()" >Yes</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+  </div>
+</ng-template>

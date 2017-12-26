@@ -1,13 +1,13 @@
 class CompromissosModel
 {
     constructor(
-            public id?: string,
-            public titulo?: string,
-            public descricao?: string,
-            public dia?: string,
-            public hora?: string,
-            public status?: string
-     )
-     {}
+        public titulo?: string,
+        public descricao?: string,
+        public dataInicio?: Date,
+        public dataFim?: Date,
+        public status?: string,
+        public _id?: string
+    ){}
 }
 export {CompromissosModel}
+ 

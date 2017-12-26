@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CompromissoComponent } from './compromisso.component';
+import { NovoCompromissoComponent } from './novo-compromisso.component';
 
-describe('CompromissoComponent', () => {
-  let component: CompromissoComponent;
-  let fixture: ComponentFixture<CompromissoComponent>;
+describe('NovoCompromissoComponent', () => {
+  let component: NovoCompromissoComponent;
+  let fixture: ComponentFixture<NovoCompromissoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CompromissoComponent ]
+      declarations: [ NovoCompromissoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CompromissoComponent);
+    fixture = TestBed.createComponent(NovoCompromissoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
