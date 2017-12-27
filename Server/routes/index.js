@@ -30,8 +30,6 @@ router.post('/api/compromissos', function (req, res) {
     }, function (err, compromisso) {
         if (err)
             res.send(err);
-        // Busca novamente todos os compromissos após termos inserido um novo registro
-        console.log(compromisso);
         res.json(compromisso);        
     });
 
@@ -44,13 +42,8 @@ router.delete('/api/compromissos/:compromisso_id', function (req, res) {
         _id: req.params.compromisso_id
     }, function (err, compromisso) {
         if (err)
-            res.send(err);
-        // Busca novamente todos os compromissos após termos removido o registro
-        compromissos.find(function (err, compromisso) {
-            if (err)
-                res.send(err)
-            res.json(compromissos);
-        });
+            res.send(err);            
+        res.json(compromisso);    
     });
 });
 
