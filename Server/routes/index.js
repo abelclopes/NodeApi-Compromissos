@@ -6,8 +6,8 @@ var router = express.Router();
 var compromissos = mongoose.model('compromissos');
 
 // ROTA BUSCAR ============================================
-router.get('/api/compromissos/page/:page', function (req, res, next) {
-    var perPage = 9
+router.get('/api/compromissos/:page/:tamanhoPagina', function (req, res, next) {
+    var perPage = req.params.tamanhoPagina || 9
     var page = req.params.page || 1
     // utilizaremos o mongoose para buscar todos os compromissos no BD
     compromissos.find({})
@@ -17,8 +17,13 @@ router.get('/api/compromissos/page/:page', function (req, res, next) {
             compromissos.count().exec(function(err, count) {
                 if (err) return next(err)
                 res.json({
-                    compromissos: comp,
-                    current: page,
+                    resultado: comp,
+                    numeroPagina: page,
+                    temPaginaAnterior: ((page > Math.ceil(count / perPage))?true:false),
+                    temPaginaPosterior: ((page < Math.ceil(count / perPage))?true:false),
+                    totalItens: count,
+                    numeroPaginaPosterior: page + 1,
+                    numeroPaginaAnterior: ((page > 0 ) ? (page - 1): 0),
                     pages: Math.ceil(count / perPage)
                 })
             })
@@ -27,7 +32,6 @@ router.get('/api/compromissos/page/:page', function (req, res, next) {
 
 // ROTA CRIAR =============================================
 router.post('/api/compromissos', function (req, res) {
-    // Cria um compromisso, as informações são enviadas por uma requisição AJAX pelo Angular
     compromissos.create({
         titulo: req.body.titulo,
         derscricao: req.body.derscricao,
@@ -38,7 +42,14 @@ router.post('/api/compromissos', function (req, res) {
     }, function (err, compromisso) {
         if (err)
             res.send(err);
-        res.json(compromisso);        
+        
+        compromissos.findOne({
+            _id: compromisso._id
+        }, function (err, resultado) {
+            if (err)
+                res.send(err);
+                res.json(resultado);  
+        });  
     });
 
 });

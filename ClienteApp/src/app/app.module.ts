@@ -6,6 +6,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import {LocationStrategy, HashLocationStrategy} from '@angular/common'
 
+
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+
+
+import { CompromissosApi } from "./logica-apis/index";
+
+
 import { NKDatetimeModule } from 'ng2-datetime/ng2-datetime'
 
 import {ROUTES} from './app.routes'
@@ -14,7 +21,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { CompromissosComponent } from './compromissos/compromissos.component';
 
-import { CompromissosService} from './compromissos/compromissos.service';
 import { NovoCompromissoComponent } from './compromissos/novo-compromisso/novo-compromisso.component'
 
 import { ModalModule } from 'ngx-bootstrap';
@@ -36,11 +42,12 @@ import * as $ from 'jquery';
     FormsModule,
     NKDatetimeModule,
     HttpModule,
+    NgxPaginationModule,
     ModalModule.forRoot(),
     SharedModule.forRoot(),
     RouterModule.forRoot(ROUTES, {preloadingStrategy: PreloadAllModules})
   ],
-  providers: [CompromissosService],
+  providers: [CompromissosApi],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

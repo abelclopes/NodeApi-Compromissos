@@ -6,10 +6,12 @@
       <!-- <h2>{{tituloApp}}</h2> -->
 
       <div class="col-sm-12 col-xs-12">
-        <form [formGroup]="cpFormGroup" novalidate (ngSubmit)="onSubmit(cpFormGroup.value)" >
+        <form [formGroup]="cpFormGroup" novalidate  >
+         <input formControlName="_id" type="hidden" />
+         <input formControlName="status" type="hidden" /> 
           <div class="col-sm-6 col-xs-12">
             <mt-input-container errorMessage="Campo obrigatório e com 5 caracteres" label="Titulo">
-              <input class="form-control" formControlName="titulo" placeholder="Titulo" autocomplete="off" >
+              <input class="form-control" formControlName="titulo" placeholder="Titulo" autocomplete="off">
             </mt-input-container>
           </div>
           <div class="col-sm-6 col-xs-6">
@@ -35,21 +37,26 @@
             </div>            
           </div>
           <div class="col-sm-12 col-xs-12">
-          <button class="btn btn-primary">Salvar</button>
+          <button class="btn btn-primary" (click)="salvar(cpFormGroup.value)" *ngIf="buttonSave == true">Salvar</button>
+          <button class="btn btn-primary" (ngSubmit)="editar(cpFormGroup.value)" *ngIf="buttonSave == false">Editar</button>
           </div>
         </form>
     </div>
 
     <div class="col-sm-12 col-xs-12" *ngIf="compromissos">
       <h3>Lista de Compromissos</h3>
-      <table class="table">
+      <div class="row col-md-12 margin-top">
+        <input #filtrarCompromisso id="filtrar-Compromisso" (keyup)="filtrar(filtrarCompromisso.value)" placeholder="filtrar pelo título"
+        />
+      </div>
+      <table class="table table-striped table-hover">
         <tr>
           <th>Titulo</th>
           <th>Inicio</th>
           <th>Fim</th>
           <th>Ação</th>
         </tr>
-        <tr *ngFor="let c of compromissos">
+        <tr *ngFor="let c of compromissos  | paginate: { itemsPerPage: tamanhoPagina, currentPage: paginaAtual, totalItems: totalItens }">
           <td>
             <span>{{c.titulo}}</span>
           </td>
@@ -63,9 +70,11 @@
             <i (click)="Excluir(c,template)" class="glyphicon glyphicon-trash" title="Excluir"></i>
             <i (click)="Editar(c,template)" class="glyphicon glyphicon-edit" title="Editar"></i>
           </td>
-          <td></td>
         </tr>
      </table>
+      <div class="row col-md-12 margin-top">
+        <pagination-controls (pageChange)="paginar($event, filtrarCompromisso.value)"></pagination-controls>
+      </div>
    </div> 
  </div>
 </section>

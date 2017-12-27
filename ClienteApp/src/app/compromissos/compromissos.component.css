@@ -1,2 +1,5 @@
 h2{color:#000 !important}
 td{padding: 5px}
+.my-pagination /deep/ .ngx-pagination .current {
+    background: red;
+  }
