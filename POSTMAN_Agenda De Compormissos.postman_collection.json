@@ -1,0 +1,371 @@
+{
+	"info": {
+		"name": "Agenda De Compormissos",
+		"_postman_id": "9dc528cc-181d-7692-caa4-ff9020481012",
+		"description": "# Introduction\nWhat does your API do?\n\n# Overview\nThings that the developers should know about\n\n# Authentication\nWhat is the preferred way of using the API?\n\n# Error Codes\nWhat errors and status codes can a user expect?\n\n# Rate limit\nIs there a limit to the number of requests an user can send?",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://127.0.0.1:3000/api/compromissos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e615836a-d54f-45b6-8ddb-7ba3628ab60c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/compromissos/1/10",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"compromissos",
+						"1",
+						"10"
+					]
+				},
+				"description": "Lista Compromisso"
+			},
+			"response": [
+				{
+					"id": "3aa58eaf-3c7b-4718-8555-12cc110a15ae",
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/compromissos",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"compromissos"
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"_postman_previewtype": "parsed",
+					"header": [],
+					"cookie": [],
+					"responseTime": 0,
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "http://127.0.0.1:3000/api/compromissos/:compromisso_id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/compromissos/:compromisso_id",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"compromissos",
+						":compromisso_id"
+					],
+					"variable": [
+						{
+							"key": "compromisso_id",
+							"value": ""
+						}
+					]
+				},
+				"description": "Busca detalhes do compromisso"
+			},
+			"response": [
+				{
+					"id": "3ad530d9-9459-4362-9fe8-b85dc213a8e7",
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/compromissos/:compromisso_id",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"compromissos",
+								":compromisso_id"
+							],
+							"variable": [
+								{
+									"key": "compromisso_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"_postman_previewtype": "parsed",
+					"header": [],
+					"cookie": [],
+					"responseTime": 0,
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "http://127.0.0.1:3000/api/compromissos/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"titulo\": \"Reuniao daly\",\n    \"descrica\": \"\",\n    \"dataInicio\": \"2018-12-01T02:00:00.000Z\",\n    \"dataFim\": \"2018-12-01T02:00:00.000Z\",\n    \"status\": \"true\"\n}\n"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/compromissos/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"compromissos",
+						""
+					]
+				},
+				"description": "Criar"
+			},
+			"response": [
+				{
+					"id": "b4113bfe-5d90-4a5a-906e-ccf1dde0deb9",
+					"name": "Default",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/compromissos/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"compromissos",
+								""
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"_postman_previewtype": "parsed",
+					"header": [],
+					"cookie": [],
+					"responseTime": 0,
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "http://127.0.0.1:3000/api/compromissos/:compromisso_id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"_id\": \"5a4413fc03ca1be064000001\",\n    \"titulo\": \"Reuniao daly\",\n    \"dataInicio\": \"2018-12-01T02:00:00.000Z\",\n    \"dataFim\": \"2018-12-01T02:00:00.000Z\",\n    \"status\": true\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/compromissos/5a4413fc03ca1be064000001",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"compromissos",
+						"5a4413fc03ca1be064000001"
+					]
+				},
+				"description": "Editar"
+			},
+			"response": [
+				{
+					"id": "e2460769-c365-495a-9292-0ecff4991c15",
+					"name": "Default",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/compromissos/:compromisso_id",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"compromissos",
+								":compromisso_id"
+							],
+							"variable": [
+								{
+									"key": "compromisso_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"_postman_previewtype": "parsed",
+					"header": [],
+					"cookie": [],
+					"responseTime": 0,
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "http://127.0.0.1:3000/api/compromissos/:compromisso_id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/api/compromissos/5a4413fc03ca1be064000001",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"compromissos",
+						"5a4413fc03ca1be064000001"
+					]
+				},
+				"description": "Deletar"
+			},
+			"response": [
+				{
+					"id": "6e795852-7d65-4bb4-b6cd-6b5a6d77b342",
+					"name": "Default",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/compromissos/:compromisso_id",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"compromissos",
+								":compromisso_id"
+							],
+							"variable": [
+								{
+									"key": "compromisso_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": "",
+					"_postman_previewtype": "parsed",
+					"header": [],
+					"cookie": [],
+					"responseTime": 0,
+					"body": ""
+				}
+			]
+		}
+	]
+}
