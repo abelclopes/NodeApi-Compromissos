@@ -9,8 +9,6 @@ import 'rxjs/add/operator/debounceTime';
 
 import {MEAT_API} from '../app.api'
 
-import { BsModalService } from 'ngx-bootstrap/modal';
-import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { CompromissosApi, Compromisso, CompromissosModel ,ListaPaginadaCompromissosModel} from "../logica-apis/index";
 
 import {NotificationService} from '../shared/messages/notification.service'
@@ -21,17 +19,8 @@ import {NotificationService} from '../shared/messages/notification.service'
   styleUrls: ['./compromissos.component.css']
 })
 export class CompromissosComponent implements OnInit {
-  modalRef: BsModalRef;
   tituloApp: string
-
   cpFormGroup: FormGroup;
-  itensAgenda: Observable<CompromissosModel>
-
-  Url:string
-  confirmation: boolean
-  template: TemplateRef<any>
-
-  item: CompromissosModel
   compromissos: CompromissosModel[]
 
   paginaAtual: number;
@@ -42,9 +31,9 @@ export class CompromissosComponent implements OnInit {
 
   private termoFiltro = new Subject<string>();
 
-  constructor(private compromissosApi: CompromissosApi, private notificationService: NotificationService,private modalService: BsModalService) 
+  constructor(private compromissosApi: CompromissosApi, private notificationService: NotificationService)
   {
-    this.paginaAtual = 1;      
+    this.paginaAtual = 1;
   }
 
   filtrar(termo: string): void {
@@ -76,13 +65,11 @@ export class CompromissosComponent implements OnInit {
       this.compromissos = x.resultado
       this.totalItens = x.totalItens;
     })
-    
+
     this.termoFiltro.next("");
 
   }
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
-  }
+
   addSubstractDays(date: Date): Date {
     let d = new Date(date);
     return new Date(
@@ -98,10 +85,10 @@ export class CompromissosComponent implements OnInit {
           async (data) => {
             var index = this.compromissos.indexOf(item);
             this.compromissos.splice(index, 1)
-            
-           this.notificationService.notify(`Você adicionou o Compromisso ${item.titulo}`)          
+
+           this.notificationService.notify(`Você adicionou o Compromisso ${item.titulo}`)
          },
-        (err)=> {           
+        (err)=> {
           this.notificationService.notify(`Ocorreu um erro ao tentar realizar a operação ${err.status}`);
     });
   }
@@ -109,60 +96,49 @@ export class CompromissosComponent implements OnInit {
   Editar(compromisso: CompromissosModel)
   {
     this.buttonSave = false;
-    
     this.cpFormGroup.patchValue({
-      'titulo': compromisso.titulo, 
-      'status': compromisso.status, 
-      '_id': compromisso._id, 
-      'dataInicio': this.addSubstractDays(compromisso.dataInicio), 
+      'titulo': compromisso.titulo,
+      'status': compromisso.status,
+      '_id': compromisso._id,
+      'dataInicio': this.addSubstractDays(compromisso.dataInicio),
       'dataFim': this.addSubstractDays(compromisso.dataFim)
     });
-    this.compromissosApi.apiCompromissosByCompromissoIdPut(compromisso)
+  }
+  SalvaEditar(compromisso)
+  {
+    var model = {
+        titulo: compromisso.titulo,
+        status: compromisso.status,
+        dataInicio: compromisso.dataInicio,
+        dataFim: compromisso.dataFim,
+        _id: compromisso._id
+    }
+    this.compromissosApi.apiCompromissosByCompromissoIdPut(compromisso._id, model)
               .subscribe(
                     async (data) => {
-                      console.log(data)
-                      var index = this.compromissos.indexOf(compromisso);
-                      this.compromissos.splice(index, 1)
-                      this.compromissos.push(data)
-                      
-                    this.notificationService.notify(`Você adicionou o Compromisso ${compromisso.titulo}`)
-                    
+                        let updateItem = this.compromissos.find(x =>x._id == data._id);
+                        let index = this.compromissos.indexOf(updateItem);
+                        this.compromissos[index] = data;
+                        this.cpFormGroup.reset();
+                        this.notificationService.notify(`Você adicionou o Compromisso ${compromisso.titulo}`)
                   },
-                  (err)=> {           
+                  (err)=> {
                     this.notificationService.notify(`Ocorreu um erro ao tentar realizar a operação ${err.status}`);
-              });
-
-
+              }
+            );
   }
-  salvar(compromisso)
-  { 
+  Salvar(compromisso)
+  {
     this.compromissosApi.apiCompromissosPost(compromisso)
-      .subscribe(
-            async (data) => {
+      .subscribe(async (data) =>
+            {
               this.compromissos.push(data)
+              this.cpFormGroup.reset();
              this.notificationService.notify(`Você adicionou o Compromisso ${compromisso.titulo}`)
-            
            },
-          (err)=> {           
+          (err) => {
             this.notificationService.notify(`Ocorreu um erro ao tentar realizar a operação ${err.status}`);
-      });
-  }
-  encodeCompromisso(compromisso: CompromissosModel): CompromissosModel {
-    return {
-      titulo: compromisso.titulo,
-      dataFim: compromisso.dataFim,
-      dataInicio: compromisso.dataInicio,
-      status: compromisso.status,
-      descricao: compromisso.descricao
-    };
-  }
-  decodeCompromisso(json: CompromissosModel): CompromissosModel {
-    return {
-      titulo: json.titulo,
-      dataFim: json.dataFim,
-      dataInicio: json.dataInicio,
-      status: json.status,
-      descricao: json.descricao
-    };
+          }
+    );
   }
 }

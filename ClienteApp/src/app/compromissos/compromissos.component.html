@@ -8,7 +8,7 @@
       <div class="col-sm-12 col-xs-12">
         <form [formGroup]="cpFormGroup" novalidate  >
          <input formControlName="_id" type="hidden" />
-         <input formControlName="status" type="hidden" /> 
+         <input formControlName="status" type="hidden" />
           <div class="col-sm-6 col-xs-12">
             <mt-input-container errorMessage="Campo obrigatório e com 5 caracteres" label="Titulo">
               <input class="form-control" formControlName="titulo" placeholder="Titulo" autocomplete="off">
@@ -16,29 +16,29 @@
           </div>
           <div class="col-sm-6 col-xs-6">
             <div class="form-group">
-                  <mt-input-container errorMessage="Campo obrigatório" label="De">                                           
+                  <mt-input-container errorMessage="Campo obrigatório" label="De">
                     <datetime placeholder="De"
-                     date-format="DD-MM-YYYY hh:mm" 
-                     formControlName="dataInicio" 
-                     [timepicker]="{ icon: 'fa fa-clock-o' , placeholder: 'Hora Inicio' }" 
+                     date-format="DD-MM-YYYY hh:mm"
+                     formControlName="dataInicio"
+                     [timepicker]="{ icon: 'fa fa-clock-o' , placeholder: 'Hora Inicio' }"
                      [datepicker]="{ icon: 'fa fa-calendar', placeholder: 'Data Inicio' }"
-                     ></datetime>                 
+                     ></datetime>
                   </mt-input-container>
-            </div>            
+            </div>
             <div class="form-group">
-                  <mt-input-container errorMessage="Campo obrigatório" label="ate">                                           
-                    <datetime 
-                     date-format="DD-MM-YYYY hh:mm" 
-                     formControlName="dataFim"                     
-                     [timepicker]="{ icon: 'fa fa-clock-o' , placeholder: 'Hora Fim' }" 
+                  <mt-input-container errorMessage="Campo obrigatório" label="ate">
+                    <datetime
+                     date-format="dd-MM-YYYY HH:MM:i"
+                     formControlName="dataFim"
+                     [timepicker]="{ icon: 'fa fa-clock-o' , placeholder: 'Hora Fim' }"
                      [datepicker]="{ icon: 'fa fa-calendar', placeholder: 'Data Fim' }"
-                     ></datetime>                 
+                     ></datetime>
                   </mt-input-container>
-            </div>            
+            </div>
           </div>
           <div class="col-sm-12 col-xs-12">
-          <button class="btn btn-primary" (click)="salvar(cpFormGroup.value)" *ngIf="buttonSave == true">Salvar</button>
-          <button class="btn btn-primary" (ngSubmit)="editar(cpFormGroup.value)" *ngIf="buttonSave == false">Editar</button>
+          <button class="btn btn-primary" (click)="Salvar(cpFormGroup.value)" *ngIf="buttonSave == true">Salvar</button>
+          <button class="btn btn-primary" (click)="SalvaEditar(cpFormGroup.value)" *ngIf="buttonSave == false">Editar</button>
           </div>
         </form>
     </div>
@@ -62,7 +62,7 @@
           </td>
           <td>
             {{c.dataInicio | date: 'dd/MM/yyyy hh:mm'}}
-          </td>            
+          </td>
           <td>
             {{c.dataFim | date: 'dd/MM/yyyy hh:mm'}}
           </td>
@@ -75,7 +75,7 @@
       <div class="row col-md-12 margin-top">
         <pagination-controls (pageChange)="paginar($event, filtrarCompromisso.value)"></pagination-controls>
       </div>
-   </div> 
+   </div>
  </div>
 </section>
   <!-- FIM DO CONTEÚDO -->
