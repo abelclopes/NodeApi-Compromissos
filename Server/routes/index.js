@@ -42,14 +42,14 @@ router.post('/api/compromissos', function (req, res) {
     }, function (err, compromisso) {
         if (err)
             res.send(err);
-        
+
         compromissos.findOne({
             _id: compromisso._id
         }, function (err, resultado) {
             if (err)
                 res.send(err);
-                res.json(resultado);  
-        });  
+                res.json(resultado);
+        });
     });
 
 });
@@ -61,8 +61,8 @@ router.delete('/api/compromissos/:compromisso_id', function (req, res) {
         _id: req.params.compromisso_id
     }, function (err, compromisso) {
         if (err)
-            res.send(err);            
-        res.json(compromisso);    
+            res.send(err);
+        res.json(compromisso);
     });
 });
 
@@ -81,16 +81,27 @@ router.get('/api/compromissos/:compromisso_id', function (req, res) {
 // ROTA ATUALIZAR ==========================================
 router.put('/api/compromissos/:compromisso_id', function (req, res) {
     // Busca o compromisso no Model pelo parâmetro id
-    var compromissoData = req.body;
-    var id = req.params.compromisso_id;
-
+    var compromissoData = {
+        titulo: req.body.titulo,
+        status: req.body.status,
+        dataInicio: req.body.dataInicio,
+        dataFim: req.body.dataFim,
+        _id: req.body._id
+    }
+    var id = req.body._id;
     compromissos.update(
         { _id: id },
         compromissoData,
         { upsert: true },
         function (err, compromisso) {
-            if (err) res.send(err);
-            res.json(compromisso);
+            if (err) return res.send(err);
+               compromissos.findOne({
+                    _id: id
+                }, function (err, resultado) {
+                    if (err)
+                        res.send(err);
+                        res.json(resultado);
+                });
         });
 
 });
