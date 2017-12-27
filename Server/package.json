@@ -1,6 +1,6 @@
 {
-    "name": "contact-list",
-    "version": "0.0.0",
+    "name": "nodeapi-compromissos",
+    "version": "0.0.1",
     "description": "Agenda De Compromissos.",
     "main": "server.js",
     "author": "Abel Lopes",
