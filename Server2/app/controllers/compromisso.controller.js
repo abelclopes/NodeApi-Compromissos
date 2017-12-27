@@ -26,44 +26,27 @@ exports.create = function(req, res) {
 exports.findAll = function(req, res) {
     var perPage = req.params.tamanhoPagina || 9
     var page = req.params.page || 1
-    // Retrieve and return all compromissos from the database.
+    // deveria funcionar a paginação.
     
     Compromisso.find()
-    .select('titulo')
+    .skip((perPage * page) - perPage)
     .limit(perPage)
-    .skip(perPage * page)
-    .sort({
-        name: 'asc'
-    })
     .exec(function(err, results) {
+        console.log(results);        
         Compromisso.count().exec(function(err, count) {
-            if (err) return res.send(err);
+            if (err) return next(err)
             res.json({
-                events: results,
-                page: page,
+                resultado: results,
+                numeroPagina: page,
+                temPaginaAnterior: ((page > Math.ceil(count / perPage))?true:false),
+                temPaginaPosterior: ((page < Math.ceil(count / perPage))?true:false),
+                totalItens: count,
+                numeroPaginaPosterior: page + 1,
+                numeroPaginaAnterior: ((page > 0 ) ? (page - 1): 0),
                 pages: Math.ceil(count / perPage)
-            });
+            })
         })
-    })
-    // .skip((perPage * page) - perPage)
-    // .limit(perPage)
-    // .exec(function(err, results) {
-    //     console.log(results);
-        
-        // Compromisso.count().exec(function(err, count) {
-        //     if (err) return next(err)
-        //     res.json({
-        //         resultado: results,
-        //         numeroPagina: page,
-        //         temPaginaAnterior: ((page > Math.ceil(count / perPage))?true:false),
-        //         temPaginaPosterior: ((page < Math.ceil(count / perPage))?true:false),
-        //         totalItens: count,
-        //         numeroPaginaPosterior: page + 1,
-        //         numeroPaginaAnterior: ((page > 0 ) ? (page - 1): 0),
-        //         pages: Math.ceil(count / perPage)
-        //     })
-        // })
-    // });
+    });
 };
 // exports.findAll = function(req, res) {
 //     // Retrieve and return all notes from the database.
