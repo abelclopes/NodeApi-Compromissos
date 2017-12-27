@@ -6,15 +6,23 @@ var router = express.Router();
 var compromissos = mongoose.model('compromissos');
 
 // ROTA BUSCAR ============================================
-router.get('/api/compromissos', function (req, res) {
+router.get('/api/compromissos/page/:page', function (req, res, next) {
+    var perPage = 9
+    var page = req.params.page || 1
     // utilizaremos o mongoose para buscar todos os compromissos no BD
-    compromissos.find(function (err, compromissos) {
-        // Em caso de erros, envia o erro na resposta
-        if (err)
-            res.send(err)
-        // Retorna todos os compromissos encontrados no BD
-        res.json(compromissos);
-    });
+    compromissos.find({})
+        .skip((perPage * page) - perPage)
+        .limit(perPage)
+        .exec(function(err, comp) {
+            compromissos.count().exec(function(err, count) {
+                if (err) return next(err)
+                res.json({
+                    compromissos: comp,
+                    current: page,
+                    pages: Math.ceil(count / perPage)
+                })
+            })
+        })
 });
 
 // ROTA CRIAR =============================================
