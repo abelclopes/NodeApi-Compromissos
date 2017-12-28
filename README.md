@@ -12,7 +12,7 @@ v6.11.3
 
 $ npm -v
 3.10.10
-![alt text](https://raw.githubusercontent.com/abelclopes/NodeApi-Compromissos/master/nodejs-versao.png)
+![node versão](https://raw.githubusercontent.com/abelclopes/NodeApi-Compromissos/master/nodejs-versao.png)
 
 ```
 ### Instalando as Dependências
