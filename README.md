@@ -3,10 +3,17 @@ agenda de comprommissos restfull com angular 4+ nodejs express
 
 ## 1. Passos para começar
 ## programas necessários
-`instalar mongodb` e 
+`instalar mongodb` e
 `instalar nodo`
+```
+usei
+$ node -v
+v6.11.3
 
-
+$ npm -v
+3.10.10
+![alt text](https://raw.githubusercontent.com/abelclopes/NodeApi-Compromissos/tree/master/nodejs-versao.png)
+```
 ### Instalando as Dependências
 
 `cd .\ClienteApp\` `npm install`
