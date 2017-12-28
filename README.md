@@ -3,7 +3,7 @@ agenda de comprommissos restfull com angular 4+ nodejs express
 
 ## 1. Passos para começar
 ## programas necessários
-`instalar mongodb`
+`instalar mongodb` e 
 `instalar nodo`
 
 
