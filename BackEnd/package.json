@@ -10,10 +10,13 @@
   "author": "Abel Lopes",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.16.2",
+    "fs": "0.0.1-security",
     "json-server": "^0.12.1",
     "tcs": "^10.0.0"
   },
   "devDependencies": {
+    "@types/node": "^9.3.0",
     "typescript": "^2.6.2"
   }
 }
