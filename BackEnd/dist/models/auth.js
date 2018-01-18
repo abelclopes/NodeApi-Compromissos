@@ -15,5 +15,5 @@ function isValid(user) {
     if (!user)
         return false;
     var dbUsers = users_1.users[user.email];
-    return dbUsers !== undefined && dbUsers.macthes(user);
+    return dbUsers !== undefined && dbUsers.matches(user);
 }

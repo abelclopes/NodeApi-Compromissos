@@ -16,5 +16,5 @@ function isValid(user: User): boolean{
     
     const dbUsers = users[user.email]
     
-    return dbUsers !== undefined && dbUsers.macthes(user)
+    return dbUsers !== undefined && dbUsers.matches(user)
 }
